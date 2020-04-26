@@ -28,7 +28,7 @@
 
       <!-- Tab页签区域 -->
       <el-tabs v-model="activeName" @tab-click="handleTabClick">
-        <el-tab-pane label="动态参数" name="only" :disabled="isBtnDisabled">
+        <el-tab-pane label="动态参数" name="many" :disabled="isBtnDisabled">
           <!-- 添加参数按钮 -->
           <el-button
             type="primary"
@@ -37,7 +37,7 @@
             @click="showAddParamsDialog"
           >添加参数</el-button>
           <!-- 动态参数表格 -->
-          <el-table :data="onlyTableData" border stripe>
+          <el-table :data="manyTableData" border stripe>
             <!-- 展开行 -->
             <el-table-column type="expand">
               <!-- 作用域插槽 -->
@@ -82,7 +82,7 @@
             </el-table-column>
           </el-table>
         </el-tab-pane>
-        <el-tab-pane label="静态属性" name="many" :disabled="isBtnDisabled">
+        <el-tab-pane label="静态属性" name="only" :disabled="isBtnDisabled">
           <!-- 添加属性按钮 -->
           <el-button
             type="primary"
@@ -91,7 +91,7 @@
             @click="showAddParamsDialog"
           >添加属性</el-button>
           <!-- 静态属性表格 -->
-          <el-table :data="manyTableData" border stripe>
+          <el-table :data="onlyTableData" border stripe>
             <!-- 展开行 -->
             <el-table-column type="expand">
               <!-- 作用域插槽 -->
@@ -205,11 +205,11 @@ export default {
         children: 'children'
       },
       // Tab激活的页签名
-      activeName: 'only',
+      activeName: 'many',
       // 动态参数数据
-      onlyTableData: [],
-      // 静态属性数据
       manyTableData: [],
+      // 静态属性数据
+      onlyTableData: [],
       // 添加参数对话框的显示隐藏
       addParamsDialogVisible: false,
       // 添加参数表单数据对象
@@ -257,7 +257,7 @@ export default {
         this.selectedKeys = []
         this.manyTableData = []
         this.onlyTableData = []
-        this.activeName = 'only'
+        this.activeName = 'many'
         return
       }
       // 选中的是三级分类
@@ -459,7 +459,7 @@ export default {
     },
     // 添加参数的标题
     titleText() {
-      if (this.activeName === 'only') {
+      if (this.activeName === 'many') {
         return '动态参数'
       } else {
         return '静态属性'
