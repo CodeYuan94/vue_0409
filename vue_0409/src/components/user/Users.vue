@@ -176,7 +176,7 @@ export default {
         pagesize: 5
       },
       userlist: [],
-      total: 4,
+      total: 0,
       // 控制添加用户对话框的现实与隐藏
       addDialogVisible: false,
       // 添加用户的表单数据
